@@ -2,8 +2,8 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import Stripe from 'stripe';
 
-const stripePublishableKey = "pk_test_51NrXxjFhR7Qa2jLveDu2naP1HobAyHpsqmNxkF3VtM6uSuQN3YmdETfCIv5bk3WP4wOOZersS4gwvP08AQp0rTyq00kHEXCLAL";
-const stripeSecretKey = "sk_test_51NrXxjFhR7Qa2jLvzc0ETGKrF04vL9r0d5oxdPCPexbpqU1Il2hUwc2T3WkWgPgve3LMnpf5xNa7XJ9zYOhxea0300ImQ6t3jO";
+const stripePublishableKey = "";
+const stripeSecretKey = "";
 
 const app = express();
 
@@ -168,6 +168,23 @@ app.post('/attach-payment-method', async(req, res) => {
 
   return res.json({
     paymentMethod
+  })
+})
+
+app.post('/detach-payment-method', async(req, res) => {
+  const { paymentMethodId } = req.body;
+
+  console.log(paymentMethodId)
+  const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: '2023-10-16',
+    typescript: false,
+  });
+
+  const paymentMethod = await stripe.paymentMethods.detach(paymentMethodId);
+
+  console.log(paymentMethod.card);
+  return res.json({
+    true: true
   })
 })
 

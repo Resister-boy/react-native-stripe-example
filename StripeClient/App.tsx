@@ -74,6 +74,8 @@ const App = () => {
         }
       }
     })
+
+    console.log("paymentMethoddddddd", paymentMethod)
     setPaymentMethodId(paymentMethod.paymentMethod?.id || '')
     console.log("paymentMethod", paymentMethod.paymentMethod?.id)
 
@@ -83,6 +85,14 @@ const App = () => {
     });
 
     console.log("response", response.data)
+  }
+
+  const handleDetachPaymentMethod = async() => {
+    const response = await axios.post('http://localhost:8080/detach-payment-method', {
+      paymentMethodId: paymentMethodId
+    })
+
+    console.log(response.data)
   }
 
 
@@ -96,6 +106,7 @@ const App = () => {
         <Button title='getSingleCustomer' onPress={() => fetchSingleCustomer()}/>
         <Button title='retrievePaymentMethod' onPress={() => fetchPaymentMethod()}/>
         <Button title='createPaymentMethod' onPress={async () => handleCreatePaymentMethod()}/>
+        <Button title='deletePaymentMethod' onPress={async () => handleDetachPaymentMethod()}/>
         <CardField
           autofocus
           cardStyle={{
