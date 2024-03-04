@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { CardField, StripeProvider, createPaymentMethod } from '@stripe/stripe-react-native';
 import axios from 'axios';
 
-const stripePublishableKey = "";
+const stripePublishableKey = "<YOUR PUBLISHABLE KEY>";
 
 const App = () => {
   const [customerId, setCustomerId] = useState<string>('');
