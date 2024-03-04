@@ -2,8 +2,8 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import Stripe from 'stripe';
 
-const stripePublishableKey = "";
-const stripeSecretKey = "";
+const stripePublishableKey = "<YOUR PUBLISHABLE KEY>";
+const stripeSecretKey = "<YOUR SECRET KEY>";
 
 const app = express();
 
